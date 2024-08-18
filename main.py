@@ -26,15 +26,20 @@ def close_with_error(issue, msg):
     issue.edit(state="closed", labels=["Invalid"])
 
 def player_emoji(player):
-    if player == 0: return " "
-    elif player == 1: return "❌"
+    if player == 1: return "❌"
     elif player == 2: return "⭕"
+
+def board_segment(player, index):
+    if player == 0:
+        return f"[{index}](https://github.com/{GITHUB_REPO}/issues/new?title=Update:{index})"
+    else:
+        return player_emoji(player)
 
 def render_board(board):
     rows = []
     for row_start in range(0, 9, 3):
         row = board[row_start:row_start+3]
-        row_internal = "|".join(map(player_emoji, row))
+        row_internal = "|".join(board_segment(player, row_start + index) for index, player in enumerate(row))
         rows.append(f"|{row_internal}|")
     rows.insert(1, "|---|---|---|")
     return "\n".join(rows)

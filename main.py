@@ -114,4 +114,5 @@ def main():
     issue.edit(state="closed")
 
 if __name__ == "__main__":
+    print("RUNNING SCRIPT")
     main()

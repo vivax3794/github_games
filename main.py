@@ -6,8 +6,8 @@ GITHUB_REPO = os.getenv("GITHUB_REPOSITORY")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 def main():
-    github = github.Github(GITHUB_TOKEN)
-    repo = github.get_repo(GITHUB_REPO)
+    client = github.Github(GITHUB_TOKEN)
+    repo = client.get_repo(GITHUB_REPO)
     issue = repo.get_issue(number=ISSUE_NUMBER)
 
     issue.create_comment("Hello World!")

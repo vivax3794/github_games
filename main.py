@@ -50,6 +50,7 @@ def render_readme(game):
             "# Board",
             render_board(game["board"]),
             f"## Current player: {player}"
+            ""
             "The game takes around 30s to respond"
             ]
     return "\n".join(lines)

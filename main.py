@@ -53,6 +53,23 @@ def render_readme(game):
             ]
     return "\n".join(lines)
 
+def winning_set(row):
+    row = set(row)
+    return len(row) == 1 and row != {0}
+
+def win(game):
+    board = game["board"]
+    for row_start in range(0, 9, 3):
+        row = board[row_start:row_start+3]
+        if winning_set(row): return True
+    for col in range(3):
+        col = [board[col], board[col + 3], board[col + 6]]
+        if winning_set(col): return True
+    if winning_set([board[0], board[4], board[8]]): return True
+    if winning_set([board[2], board[4], board[6]]): return True
+
+    return False
+
 def main():
     client = github.Github(GITHUB_TOKEN)
     repo = client.get_repo(GITHUB_REPO)
@@ -80,10 +97,16 @@ def main():
     save_game(game)
 
     readme = render_readme(game)
+    issue.create_comment(readme)
+
+    if win(game):
+        issue.create_comment("Congrats you won!")
+        game = {"board": clean_board(), "player": 1}
+        readme = render_readme(game)
+
     with open("README.md", "w+") as f:
         f.write(readme)
 
-    issue.create_comment(readme)
     issue.edit(state="closed")
 
 if __name__ == "__main__":

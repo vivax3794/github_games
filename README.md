@@ -1,5 +1,6 @@
 # Board
 | | |❌|
+|---|---|---|
+| |⭕| |
 | | | |
-| | | |
-## Current player: ⭕
+## Current player: ❌

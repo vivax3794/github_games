@@ -94,7 +94,6 @@ def main():
 
     game["board"][number] = game["player"]
     game["player"] = 2 if game["player"] == 1 else 1
-    save_game(game)
 
     readme = render_readme(game)
     issue.create_comment(readme)
@@ -108,6 +107,7 @@ def main():
         game = {"board": clean_board(), "player": 1}
         readme = render_readme(game)
 
+    save_game(game)
     with open("README.md", "w+") as f:
         f.write(readme)
 

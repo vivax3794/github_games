@@ -24,13 +24,15 @@ jobs:
           architecture: "x64"
           cache: 'pip'
 
+      - name: Install Deps
+        run: pip install -r requirements.txt
+
       - name: Running Game
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
-          pip install -r requirements.txt
           python main.py
 
       - name: Commit and push changes

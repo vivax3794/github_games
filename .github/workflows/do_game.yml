@@ -6,7 +6,7 @@ on:
 
 jobs:
   transformImage:
-    name: Transform Image
+    name: Run Game
     runs-on: ubuntu-latest
     if: startsWith(github.event.issue.title, 'Update:')
 
@@ -19,7 +19,7 @@ jobs:
           python-version: "3.12"
           architecture: "x64"
 
-      - name: Start image transform
+      - name: Running Game
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

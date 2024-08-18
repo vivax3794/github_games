@@ -103,6 +103,10 @@ def main():
         issue.create_comment("Congrats you won!")
         game = {"board": clean_board(), "player": 1}
         readme = render_readme(game)
+    if all(x != 0 for x in game["board"]):
+        issue.create_comment("Wow its a draw, who would have expected this :P")
+        game = {"board": clean_board(), "player": 1}
+        readme = render_readme(game)
 
     with open("README.md", "w+") as f:
         f.write(readme)

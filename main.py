@@ -65,7 +65,7 @@ def main():
         close_with_error(issue, "Invalid input format")
         return
 
-    if number > 9 or number < 1:
+    if number > 8 or number < 0:
         close_with_error(issue, "Input must be in range 1-9")
         return
 

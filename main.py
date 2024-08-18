@@ -36,6 +36,7 @@ def render_board(board):
         row = board[row_start:row_start+3]
         row_internal = "|".join(map(player_emoji, row))
         rows.append(f"|{row_internal}|")
+    rows.insert(1, "|---|---|---|")
     return "\n".join(rows)
 
 def render_readme(game):

@@ -19,7 +19,7 @@ def read_game_state():
 
 def save_game(game):
     with open("game.json", "w+") as f:
-        json.dump(f, game)
+        json.dump(game, f)
 
 def close_with_error(issue, msg):
     issue.create_comment(f"ERROR: {msg}")
